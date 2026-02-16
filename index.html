@@ -34,52 +34,49 @@ h1{
     color:red;
     margin-top:20px;
 }
-
-button{
-    margin-top:30px;
-    padding:10px 25px;
-    font-size:18px;
-    border:none;
-    background:#d00000;
-    color:white;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#a00000;
-}
 </style>
 
 </head>
 
 <body>
 
-<h1>🧧 BỐC LÌ XÌ MAY MẮN 🧧</h1>
+<h1>🧧 LÌ XÌ MAY MẮN 🧧</h1>
 
 <div id="spinner">🧧</div>
 <div id="result"></div>
 
-<button onclick="draw()">Bốc lại</button>
-
 <script>
-function draw(){
 
-    document.getElementById("spinner").style.display="block";
-    document.getElementById("result").innerHTML="";
+function openLixi(){
+
+    // Nếu đã nhận rồi
+    if(localStorage.getItem("receivedLixi")){
+        document.getElementById("spinner").style.display="none";
+        document.getElementById("result").innerHTML =
+            "🎉 Bạn đã nhận lì xì rồi!<br>Chúc mừng năm mới! 🎊";
+        return;
+    }
 
     setTimeout(function(){
 
         document.getElementById("spinner").style.display="none";
 
-        // Random từ 5.000 → 30.000 (chia hết 1.000)
         let number = (Math.floor(Math.random()*26)+5)*1000;
 
         document.getElementById("result").innerHTML =
             "Bạn nhận được:<br>"+number.toLocaleString()+" đ 🎉";
 
+        // Lưu lại trạng thái đã nhận
+        localStorage.setItem("receivedLixi", number);
+
     },2000);
 }
+
+// Tự mở khi vào web
+window.onload = function(){
+    openLixi();
+}
+
 </script>
 
 </body>
