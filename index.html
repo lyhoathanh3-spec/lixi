@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bốc Lì Xì May Mắn</title>
+
+<style>
+body{
+    font-family:sans-serif;
+    text-align:center;
+    background:#fff8e7;
+    margin-top:60px;
+}
+
+h1{
+    color:#d00000;
+}
+
+#spinner{
+    font-size:100px;
+    animation:shake 0.5s infinite;
+}
+
+@keyframes shake{
+    0%{ transform:rotate(0deg); }
+    25%{ transform:rotate(-12deg); }
+    50%{ transform:rotate(12deg); }
+    75%{ transform:rotate(-12deg); }
+    100%{ transform:rotate(0deg); }
+}
+
+#result{
+    font-size:55px;
+    color:red;
+    margin-top:20px;
+}
+
+button{
+    margin-top:30px;
+    padding:10px 25px;
+    font-size:18px;
+    border:none;
+    background:#d00000;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#a00000;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>🧧 BỐC LÌ XÌ MAY MẮN 🧧</h1>
+
+<div id="spinner">🧧</div>
+<div id="result"></div>
+
+<button onclick="draw()">Bốc lại</button>
+
+<script>
+function draw(){
+
+    document.getElementById("spinner").style.display="block";
+    document.getElementById("result").innerHTML="";
+
+    setTimeout(function(){
+
+        document.getElementById("spinner").style.display="none";
+
+        // Random từ 5.000 → 30.000 (chia hết 1.000)
+        let number = (Math.floor(Math.random()*26)+5)*1000;
+
+        document.getElementById("result").innerHTML =
+            "Bạn nhận được:<br>"+number.toLocaleString()+" đ 🎉";
+
+    },2000);
+}
+</script>
+
+</body>
+</html>
